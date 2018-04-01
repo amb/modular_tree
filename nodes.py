@@ -179,14 +179,16 @@ class BuildTreeNode(Node, ModularTreeNode):
             layout.prop(self, "resolution_levels")
         layout.prop(self, "seed")
         layout.prop(self, "scale")
-        box = layout.row()
+        
         # row.prop(self, "auto_update")
         if self.auto_update:
+            box = layout.row()
             box.label("press ESC to stop")
 
-        else:
-            box.operator("object.modal_tree_operator", text='auto_update_tree')
-            box.operator("mod_tree.tree_from_nodes", text='create tree')
+        #else:
+        box = layout.row()
+        box.operator("object.modal_tree_operator", text='auto_update_tree')
+        box.operator("mod_tree.tree_from_nodes", text='create tree')
 
         box = layout.box()
         box.prop(self, "armature")
@@ -256,7 +258,7 @@ class GreasePencilNode(Node, ModularTreeNode):
 
     smooth_iterations = IntProperty(min=0, default=1)
     radius = FloatProperty(min=0, default=.7)
-    branch_length = FloatProperty(min=.001, default=.6)
+    branch_length = FloatProperty(min=.01, default=.6)
     radius_decrease = FloatProperty(min=0, max=.999, default=.97)
     grease_pencil_memory = StringProperty(default="")
 
@@ -345,7 +347,7 @@ class GrowNode(Node, ModularTreeNode):
     advanced_settings = BoolProperty(default=False, description="Show advanced settings")
     iterations = IntProperty(min=0, default=5, description="Number of branches iterations")
     radius = FloatProperty(min=.0005, default=.2, description="The radius at which branches stop growing")
-    branch_length = FloatProperty(min=.001, default=.9, description="The length of each branch iteration")
+    branch_length = FloatProperty(min=.01, default=.9, description="The length of each branch iteration")
     split_proba = FloatProperty(min=0, max=1, default=.3, description="The probability for a branch to fork")
     split_angle = FloatProperty(min=0, max=180, default=45, description="When a branch is splitting, the angle between the branches of the split")
     split_deviation = FloatProperty(min=0, max=7, default=.25, description="When a branch is splitting, the angle between the split and the previous branch")
@@ -424,7 +426,7 @@ class TrunkNode(Node, ModularTreeNode):
 
     height = FloatProperty(min=0, default=10)
     radius = FloatProperty(min=.0005, default=.8)
-    branch_length = FloatProperty(min=.002, default=.9)
+    branch_length = FloatProperty(min=.01, default=.9)
     radius_decrease = FloatProperty(min=0.01, max=.999, default=.97)
     randomness = FloatProperty(default=.1)
     up_attraction = FloatProperty(default=.7)
